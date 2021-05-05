@@ -1,5 +1,9 @@
+<script lang="ts">
+	import Image from './Image.svelte';
+</script>
+
 <button class="hover:bg-gray-300 rounded">
 	<a href="/">
-		<img src="static/interface/back.png" alt="back" width={80} height={80} />
+		<Image src="static/interface/back.png" alt="back" width={90} height={90} />
 	</a>
 </button>

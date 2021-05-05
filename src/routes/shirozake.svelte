@@ -1,10 +1,9 @@
-<script>
-	import BackButton from '../components/BackButton.svelte';
+<script lang="ts">
+	import Header from '../components/Header.svelte';
 </script>
 
 <svelte:head>
 	<title>Shirozake</title>
 </svelte:head>
 
-<h1>Shirozake</h1>
-<BackButton />
+<Header image="static/interface/title_siro.png" />
