@@ -14,6 +14,11 @@ module.exports = {
 	kit: {
 		// hydrate the <div id="svelte"> element in src/app.html
 		target: '#svelte',
-		adapter: adapter()
+		adapter: adapter(),
+		files: {
+			assets: 'static',
+			routes: 'src/routes',
+			template: 'src/app.html'
+		}
 	}
 };
