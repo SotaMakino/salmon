@@ -2,10 +2,11 @@
 	import Slider from 'svelte-slider';
 
 	export let value = 0;
+	export let setValue: (v: number) => void;
 </script>
 
 <div class="slider">
-	<Slider on:change={(event) => (value = event.detail[1])} value={[0, 0]} single />
+	<Slider on:change={(event) => setValue(event.detail[1])} value={[0, 0]} single />
 	Slider value: {value}
 </div>
 

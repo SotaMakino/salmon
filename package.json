@@ -4,7 +4,7 @@
 	"scripts": {
 		"dev": "svelte-kit dev",
 		"build": "svelte-kit build",
-		"preview": "svelte-kit preview",
+		"preview": "svelte-kit build && svelte-kit preview",
 		"test": "prettier --check . && eslint ./src/**/*.{ts,svelte} --ignore-path .gitignore .",
 		"format": "prettier --write .",
 		"prepare": "husky install"
