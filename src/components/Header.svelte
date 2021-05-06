@@ -5,9 +5,9 @@
 	export let image: string;
 </script>
 
-<header class="flex justify-between items-center p-3">
+<header class="flex justify-between items-center">
 	<Image src={image} width={300} height={80} />
-	<div class="pr-5">
+	<div class="mr-5">
 		<BackButton />
 	</div>
 </header>

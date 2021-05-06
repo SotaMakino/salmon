@@ -17,6 +17,7 @@ specifiers:
   prettier-plugin-svelte: ^2.2.0
   svelte: ^3.38.2
   svelte-preprocess: ^4.7.3
+  svelte-slider: ^1.0.0
   tailwindcss: ^2.1.2
   tslib: ^2.2.0
   typescript: ^4.2.4
@@ -39,6 +40,7 @@ devDependencies:
   prettier-plugin-svelte: 2.2.0_prettier@2.2.1+svelte@3.38.2
   svelte: 3.38.2
   svelte-preprocess: 4.7.3_bb9214b781d237d78afc51a09dbfe1df
+  svelte-slider: 1.0.0
   tailwindcss: 2.1.2_941a81a5c9afb5d3c8bce0db60f786b1
   tslib: 2.2.0
   typescript: 4.2.4
@@ -2300,6 +2302,10 @@ packages:
       strip-indent: 3.0.0
       svelte: 3.38.2
       typescript: 4.2.4
+    dev: true
+
+  /svelte-slider/1.0.0:
+    resolution: {integrity: sha512-299ehVoeS2IUo4THdz84VrrjsnfBLMkzVuI39XxZDUgn/15D5CRLVwWL+p+DM3KlFriAjPjXfhh0FrcTv8XXPQ==}
     dev: true
 
   /svelte/3.38.2:
