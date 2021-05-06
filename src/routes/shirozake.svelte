@@ -6,4 +6,4 @@
 	<title>Shirozake</title>
 </svelte:head>
 
-<Header image="static/interface/title_siro.png" />
+<Header image="interface/title_siro.png" />
