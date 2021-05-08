@@ -4,6 +4,6 @@
 
 <button class="hover:bg-gray-300 rounded">
 	<a href="/">
-		<Image src="interface/back.png" alt="back" width={90} height={90} />
+		<Image src="/interface/back.png" alt="back" width={90} height={90} />
 	</a>
 </button>
