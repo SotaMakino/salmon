@@ -74,7 +74,6 @@
 
 <svelte:head>
 	<title>{salmon}</title>
-	<meta name="description" content="added for master lighthouse." />
 </svelte:head>
 
 <Header image={`/interface/title_${salmon}.png`} />
