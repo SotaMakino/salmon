@@ -25,6 +25,8 @@
 	let canvas: HTMLCanvasElement;
 	let ctx: CanvasRenderingContext2D;
 	let value = 0;
+	let store: { id: number; el: HTMLImageElement }[] = [];
+	let lastIndex = 0;
 	$: roundedValue = Math.round(value * 10 * 1e2) / 1e2;
 	$: index = Math.floor(roundedValue / DIVIDER);
 
@@ -37,8 +39,20 @@
 
 	const draw = (i: number) => {
 		ctx = canvas.getContext('2d');
-		const img = new Image();
-		img.src = `/${salmon}/${i}.jpg`;
+		const src = `/${salmon}/${i}.jpg`;
+		const f = () => {
+			if (store.find((item) => item.id == i)) {
+				console.log('founded', store.length);
+				return store.find((item) => item.id == i).el;
+			} else {
+				console.log('push');
+				const newImage = new Image();
+				store.push({ id: i, el: newImage });
+				return newImage;
+			}
+		};
+		const img = f();
+		img.src = src;
 		const drawImageActualSize = () => {
 			if (canvas != null) {
 				canvas.width = IMG_WIDTH;
@@ -46,6 +60,7 @@
 				ctx.drawImage(img, 0, 0, IMG_WIDTH, IMG_HEIGHT);
 			}
 		};
+		console.log(store);
 		img.onload = drawImageActualSize;
 	};
 
@@ -54,8 +69,9 @@
 	});
 
 	afterUpdate(() => {
-		if (index < IMG_LIMIT) {
+		if (index < IMG_LIMIT && lastIndex !== index) {
 			draw(index + 1);
+			lastIndex = index;
 		}
 	});
 </script>
@@ -65,5 +81,5 @@
 </svelte:head>
 
 <Header image={`/interface/title_${salmon}.png`} />
-<canvas bind:this={canvas} />
+<canvas bind:this={canvas} width={IMG_WIDTH} height={IMG_HEIGHT} />
 <Slider {value} {setValue} />
