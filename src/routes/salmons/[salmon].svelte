@@ -1,8 +1,5 @@
 <script context="module" lang="ts">
-	/**
-	 * @type {import('@sveltejs/kit').Load}
-	 */
-	export async function load({ page }) {
+	export const load = async ({ page }) => {
 		if (page != null) {
 			return {
 				props: {
@@ -13,7 +10,7 @@
 		return {
 			error: new Error(`Something went wrong.`)
 		};
-	}
+	};
 </script>
 
 <script lang="ts">
@@ -24,8 +21,8 @@
 	export let salmon: string;
 	let canvas: HTMLCanvasElement;
 	let ctx: CanvasRenderingContext2D;
-	let value = 0;
 	let store: { id: number; el: HTMLImageElement }[] = [];
+	let value = 0;
 	let lastIndex = 0;
 	$: roundedValue = Math.round(value * 10 * 1e2) / 1e2;
 	$: index = Math.floor(roundedValue / DIVIDER);
@@ -35,23 +32,21 @@
 	const IMG_LIMIT = 7;
 	const DIVIDER = 1.42; // 10 / IMG_LIMIT
 
-	const setValue = (v: typeof value) => (value = v);
+	const setValue = (v: typeof value): number => (value = v);
 
 	const draw = (i: number) => {
 		ctx = canvas.getContext('2d');
 		const src = `/${salmon}/${i}.jpg`;
-		const f = () => {
+		const getImage = (): HTMLImageElement => {
 			if (store.find((item) => item.id == i)) {
-				console.log('founded', store.length);
 				return store.find((item) => item.id == i).el;
 			} else {
-				console.log('push');
 				const newImage = new Image();
 				store.push({ id: i, el: newImage });
 				return newImage;
 			}
 		};
-		const img = f();
+		const img = getImage();
 		img.src = src;
 		const drawImageActualSize = () => {
 			if (canvas != null) {
@@ -60,7 +55,6 @@
 				ctx.drawImage(img, 0, 0, IMG_WIDTH, IMG_HEIGHT);
 			}
 		};
-		console.log(store);
 		img.onload = drawImageActualSize;
 	};
 
@@ -69,7 +63,7 @@
 	});
 
 	afterUpdate(() => {
-		if (index < IMG_LIMIT && lastIndex !== index) {
+		if (index < IMG_LIMIT && index !== lastIndex) {
 			draw(index + 1);
 			lastIndex = index;
 		}
