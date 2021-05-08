@@ -1,5 +1,6 @@
 <svelte:head>
 	<title>Salmon</title>
+	<meta name="description" content="added for master lighthouse." />
 </svelte:head>
 
 <h1>Home</h1>

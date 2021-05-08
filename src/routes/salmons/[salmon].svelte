@@ -1,4 +1,6 @@
 <script context="module" lang="ts">
+	export const prerender = true;
+
 	export const load = async ({ page }) => {
 		if (page != null) {
 			return {
@@ -72,6 +74,7 @@
 
 <svelte:head>
 	<title>{salmon}</title>
+	<meta name="description" content="added for master lighthouse." />
 </svelte:head>
 
 <Header image={`/interface/title_${salmon}.png`} />
