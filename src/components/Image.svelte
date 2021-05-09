@@ -3,6 +3,7 @@
 	export let width: number;
 	export let height: number;
 	export let alt = '';
+	export let className = '';
 </script>
 
-<img {src} {alt} {width} {height} />
+<img class={className} {src} {alt} {width} {height} />

@@ -1,11 +1,15 @@
+<script lang="ts">
+	import Image from '../components/Image.svelte';
+	import SalmonList from '../components/SalmonList.svelte';
+
+	const salmons = ['sakura', 'benizake', 'masuno', 'sirozake', 'karahuto', 'ginzake'];
+</script>
+
 <svelte:head>
 	<title>Salmon</title>
 </svelte:head>
 
-<h1>Home</h1>
-<a sveltekit:prefetch href="/salmon/sakura">sakura</a>
-<a sveltekit:prefetch href="/salmon/benizake">benizake</a>
-<a sveltekit:prefetch href="/salmon/masuno">masuno</a>
-<a sveltekit:prefetch href="/salmon/sirozake">shirozake</a>
-<a sveltekit:prefetch href="/salmon/karahuto">karahuto</a>
-<a sveltekit:prefetch href="/salmon/ginzake">ginzake</a>
+<div class="flex flex-col items-center pt-5">
+	<Image src="/main/main_title.png" width={300} height={100} />
+	<SalmonList pathnames={salmons} />
+</div>
