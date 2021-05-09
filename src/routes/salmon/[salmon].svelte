@@ -22,6 +22,7 @@
 	import { afterUpdate, onMount } from 'svelte';
 	import Header from '../../components/Header.svelte';
 	import Slider from '../../components/Slider.svelte';
+	import { DIVIDER, IMG_HEIGHT, IMG_LIMIT, IMG_WIDTH } from '../../layout';
 
 	export let salmon: string;
 	let canvas: HTMLCanvasElement;
@@ -31,11 +32,6 @@
 	let lastIndex = 0;
 	$: roundedValue = Math.round(value * 10 * 1e2) / 1e2;
 	$: index = Math.floor(roundedValue / DIVIDER);
-
-	const IMG_WIDTH = 600;
-	const IMG_HEIGHT = 500;
-	const IMG_LIMIT = 7;
-	const DIVIDER = 1.42; // 10 / IMG_LIMIT
 
 	const setValue = (v: typeof value) => {
 		value = v;
@@ -81,6 +77,12 @@
 	<title>{salmon}</title>
 </svelte:head>
 
-<Header image={`/interface/title_${salmon}.png`} />
-<canvas bind:this={canvas} width={IMG_WIDTH} height={IMG_HEIGHT} />
-<Slider {value} {setValue} />
+<div class="flex flex-col z-10">
+	<div class="z-10"><Header image={`/interface/title_${salmon}.png`} /></div>
+	<div class="w-full h-full text-center absolute top-0 left-0 px-56">
+		<canvas class="inline w-full h-full" bind:this={canvas} width={IMG_WIDTH} height={IMG_HEIGHT} />
+	</div>
+	<div class=" w-96 z-10 absolute bottom-0 left-0 right-0 mx-auto py-20">
+		<Slider {setValue} />
+	</div>
+</div>
