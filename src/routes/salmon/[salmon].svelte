@@ -1,7 +1,9 @@
 <script context="module" lang="ts">
+	type Output = Pick<LoadOutput, 'props' | 'error'>;
+
 	export const prerender = true;
 
-	export const load = async ({ page }) => {
+	export const load = async ({ page }: LoadInput): Promise<Output> => {
 		if (page != null) {
 			return {
 				props: {
@@ -16,6 +18,7 @@
 </script>
 
 <script lang="ts">
+	import type { LoadInput, LoadOutput } from '@sveltejs/kit/types/page';
 	import { afterUpdate, onMount } from 'svelte';
 	import Header from '../../components/Header.svelte';
 	import Slider from '../../components/Slider.svelte';
@@ -34,12 +37,14 @@
 	const IMG_LIMIT = 7;
 	const DIVIDER = 1.42; // 10 / IMG_LIMIT
 
-	const setValue = (v: typeof value): number => (value = v);
+	const setValue = (v: typeof value) => {
+		value = v;
+	};
 
 	const draw = (i: number) => {
 		ctx = canvas.getContext('2d');
 		const src = `/${salmon}/${i}.jpg`;
-		const getImage = (): HTMLImageElement => {
+		const getImageEl = (): HTMLImageElement => {
 			if (store.find((item) => item.id == i)) {
 				return store.find((item) => item.id == i).el;
 			} else {
@@ -48,7 +53,7 @@
 				return newImage;
 			}
 		};
-		const img = getImage();
+		const img = getImageEl();
 		img.src = src;
 		const drawImageActualSize = () => {
 			if (canvas != null) {
