@@ -10,6 +10,6 @@
 </svelte:head>
 
 <div class="flex flex-col items-center pt-5">
-	<Image src="/main/main_title.png" width={300} height={100} />
+	<Image src="/mainview/main_title.png" width={300} height={100} />
 	<SalmonList pathnames={salmons} />
 </div>

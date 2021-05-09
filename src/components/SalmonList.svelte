@@ -9,7 +9,7 @@
 		<a class="w-1/3" sveltekit:prefetch href={`/salmon/${name}`}>
 			<Image
 				className="m-auto"
-				src={`/main/main_${name}.jpg`}
+				src={`/mainview/main_${name}.jpg`}
 				width={320}
 				height={220}
 				alt={name}
