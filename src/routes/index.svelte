@@ -9,7 +9,9 @@
 	<title>Salmon</title>
 </svelte:head>
 
-<div class="flex flex-col items-center pt-5">
-	<Image src="/mainview/main_title.png" width={300} height={100} />
-	<SalmonList pathnames={salmons} />
+<div class="absolute top-1/2 transform -translate-y-1/2">
+	<div class="flex flex-col items-center px-16 pb-16">
+		<Image src="/mainview/main_title.png" width={300} height={100} />
+		<SalmonList pathnames={salmons} />
+	</div>
 </div>
