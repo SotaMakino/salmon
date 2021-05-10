@@ -1,13 +1,11 @@
 <script context="module" lang="ts">
-	type Output = Pick<LoadOutput, 'props' | 'error'>;
-
 	export const prerender = true;
 
 	export const load = async ({
 		page: {
 			params: { salmon }
 		}
-	}: LoadInput): Promise<Output> => {
+	}: LoadInput): Promise<LoadOutput> => {
 		if (SALMONS.includes(salmon)) {
 			return {
 				props: {
