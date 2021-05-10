@@ -25,10 +25,12 @@
 	import Slider from '../../components/Slider.svelte';
 	import { DIVIDER, IMG_HEIGHT, IMG_LIMIT, IMG_WIDTH, SALMONS } from '../../constant';
 
+	type ImageItem = { id: number; el: HTMLImageElement };
+
 	export let salmon: string;
 	let canvas: HTMLCanvasElement;
 	let ctx: CanvasRenderingContext2D;
-	let store: { id: number; el: HTMLImageElement }[] = [];
+	let store: ImageItem[] = [];
 	let value = 0;
 	let lastIndex = 0;
 	$: roundedValue = Math.round(value * 10 * 1e2) / 1e2;
@@ -42,8 +44,9 @@
 		ctx = canvas.getContext('2d');
 		const src = `/${salmon}/${i}.jpg`;
 		const getImageEl = (): HTMLImageElement => {
-			if (store.find((item) => item.id == i)) {
-				return store.find((item) => item.id == i).el;
+			const found: ImageItem | null = store.find((item) => item.id == i);
+			if (found != null) {
+				return found.el;
 			} else {
 				const newImage = new Image();
 				store.push({ id: i, el: newImage });
