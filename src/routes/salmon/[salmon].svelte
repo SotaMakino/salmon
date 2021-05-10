@@ -3,17 +3,20 @@
 
 	export const prerender = true;
 
-	export const load = async ({ page }: LoadInput): Promise<Output> => {
-		if (page != null) {
+	export const load = async ({
+		page: {
+			params: { salmon }
+		}
+	}: LoadInput): Promise<Output> => {
+		if (SALMONS.includes(salmon)) {
 			return {
 				props: {
-					salmon: page.params.salmon
+					salmon
 				}
 			};
 		}
-		return {
-			error: new Error(`Something went wrong.`)
-		};
+		// will respond with a generic 404.
+		return;
 	};
 </script>
 
@@ -22,7 +25,7 @@
 	import { afterUpdate, onMount } from 'svelte';
 	import Header from '../../components/Header.svelte';
 	import Slider from '../../components/Slider.svelte';
-	import { DIVIDER, IMG_HEIGHT, IMG_LIMIT, IMG_WIDTH } from '../../layout';
+	import { DIVIDER, IMG_HEIGHT, IMG_LIMIT, IMG_WIDTH, SALMONS } from '../../constant';
 
 	export let salmon: string;
 	let canvas: HTMLCanvasElement;

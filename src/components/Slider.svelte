@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Slider from 'svelte-slider';
-	import { ICON_SIZE } from '../layout';
+	import { ICON_SIZE } from '../constant';
 	import Image from './Image.svelte';
 
 	export let setValue: (v: number) => void;

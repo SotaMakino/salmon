@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ICON_SIZE } from '../layout';
+	import { ICON_SIZE } from '../constant';
 	import Image from './Image.svelte';
 </script>
 
