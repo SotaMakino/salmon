@@ -41,25 +41,30 @@
     value = v;
   };
 
+  const getImageEl = (i: number): HTMLImageElement => {
+    const found: ImageItem | null = store.find((item) => item.id == i);
+    if (found != null) {
+      return found.el;
+    } else {
+      const newImage = new Image();
+      store.push({ id: i, el: newImage });
+      return newImage;
+    }
+  };
+
+  const loadImage = (i: number): HTMLImageElement => {
+    const img = getImageEl(i);
+    img.src = `/${salmon}/${i}.webp`;
+    return img;
+  };
+
   const draw = (i: number) => {
-    ctx = canvas.getContext('2d');
-    const src = `/${salmon}/${i}.webp`;
-    const getImageEl = (): HTMLImageElement => {
-      const found: ImageItem | null = store.find((item) => item.id == i);
-      if (found != null) {
-        return found.el;
-      } else {
-        const newImage = new Image();
-        store.push({ id: i, el: newImage });
-        return newImage;
-      }
-    };
-    const img = getImageEl();
-    img.src = src;
+    const img = loadImage(i);
     const drawImageActualSize = () => {
       if (canvas != null) {
         canvas.width = IMG_WIDTH;
         canvas.height = IMG_HEIGHT;
+        ctx = canvas.getContext('2d');
         ctx.drawImage(img, 0, 0, IMG_WIDTH, IMG_HEIGHT);
       }
     };
@@ -68,11 +73,12 @@
 
   const preload = () => {
     for (let i = IMG_LIMIT; i > 0; i--) {
-      draw(i);
+      loadImage(i);
     }
   };
 
   onMount(() => {
+    draw(1);
     preload();
   });
 
