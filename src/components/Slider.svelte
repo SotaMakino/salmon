@@ -4,6 +4,7 @@
   import Image from './Image.svelte';
 
   export let setValue: (v: number) => void;
+
 </script>
 
 <div class="flex items-center">
@@ -19,4 +20,5 @@
     --sliderPrimary: #fa8072;
     --sliderSecondary: rgba(0, 0, 0, 0.175);
   }
+
 </style>

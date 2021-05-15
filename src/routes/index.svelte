@@ -1,6 +1,7 @@
 <script lang="ts">
   import Image from '../components/Image.svelte';
   import SalmonList from '../components/SalmonList.svelte';
+
 </script>
 
 <svelte:head>

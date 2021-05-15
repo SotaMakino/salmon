@@ -1,6 +1,7 @@
 <script lang="ts">
   import { ICON_SIZE } from '../constant';
   import Image from './Image.svelte';
+
 </script>
 
 <button class="hover:bg-gray-300 rounded">

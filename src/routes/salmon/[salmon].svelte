@@ -16,6 +16,7 @@
     // will respond with a generic 404.
     return;
   };
+
 </script>
 
 <script lang="ts">
@@ -65,8 +66,14 @@
     img.onload = drawImageActualSize;
   };
 
+  const preload = () => {
+    for (let i = IMG_LIMIT; i > 0; i--) {
+      draw(i);
+    }
+  };
+
   onMount(() => {
-    draw(1);
+    preload();
   });
 
   afterUpdate(() => {
@@ -75,6 +82,7 @@
       lastIndex = index;
     }
   });
+
 </script>
 
 <svelte:head>

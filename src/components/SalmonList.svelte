@@ -1,6 +1,7 @@
 <script lang="ts">
   import { SALMONS } from '../constant';
   import Image from './Image.svelte';
+
 </script>
 
 <div class="flex flex-wrap">
