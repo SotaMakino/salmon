@@ -10,9 +10,11 @@
       <Image
         className="m-auto"
         src={`/mainview/main_${name}.webp`}
+        srcset={`/mainview/main_${name}.webp 480w, /mainview/main_${name}_lg.webp 1080w`}
         width={320}
         height={220}
         alt={name}
+        sizes="50vw"
       />
     </a>
   {/each}
