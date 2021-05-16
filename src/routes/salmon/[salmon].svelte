@@ -21,73 +21,17 @@
 
 <script lang="ts">
   import type { LoadInput, LoadOutput } from '@sveltejs/kit/types/page';
-  import { afterUpdate, onMount } from 'svelte';
   import Header from '../../components/Header.svelte';
   import Slider from '../../components/Slider.svelte';
-  import { DIVIDER, IMG_HEIGHT, IMG_LIMIT, IMG_WIDTH, SALMONS } from '../../constant';
-
-  type ImageItem = { id: number; el: HTMLImageElement };
+  import Viewer from '../../components/Viewer.svelte';
+  import { SALMONS } from '../../constant';
 
   export let salmon: string;
-  let canvas: HTMLCanvasElement;
-  let ctx: CanvasRenderingContext2D;
-  let store: ImageItem[] = [];
   let value = 0;
-  let lastIndex = 0;
-  $: roundedValue = Math.round(value * 10 * 1e2) / 1e2;
-  $: index = Math.floor(roundedValue / DIVIDER);
 
   const setValue = (v: typeof value) => {
     value = v;
   };
-
-  const getImageEl = (i: number): HTMLImageElement => {
-    const found: ImageItem | null = store.find((item) => item.id == i);
-    if (found != null) {
-      return found.el;
-    } else {
-      const newImage = new Image();
-      store.push({ id: i, el: newImage });
-      return newImage;
-    }
-  };
-
-  const loadImage = (i: number): HTMLImageElement => {
-    const img = getImageEl(i);
-    img.src = `/${salmon}/${i}.webp`;
-    return img;
-  };
-
-  const draw = (i: number) => {
-    const img = loadImage(i);
-    const drawImageActualSize = () => {
-      if (canvas != null) {
-        canvas.width = IMG_WIDTH;
-        canvas.height = IMG_HEIGHT;
-        ctx = canvas.getContext('2d');
-        ctx.drawImage(img, 0, 0, IMG_WIDTH, IMG_HEIGHT);
-      }
-    };
-    img.onload = drawImageActualSize;
-  };
-
-  const preload = () => {
-    for (let i = IMG_LIMIT; i > 0; i--) {
-      loadImage(i);
-    }
-  };
-
-  onMount(() => {
-    draw(1);
-    preload();
-  });
-
-  afterUpdate(() => {
-    if (index < IMG_LIMIT && index !== lastIndex) {
-      draw(index + 1);
-      lastIndex = index;
-    }
-  });
 
 </script>
 
@@ -98,7 +42,7 @@
 <div class="flex flex-col z-10">
   <div class="z-10"><Header image={`/interface/title_${salmon}.webp`} /></div>
   <div class="w-full h-full text-center absolute top-0 left-0 px-56">
-    <canvas class="inline w-full h-full" bind:this={canvas} width={IMG_WIDTH} height={IMG_HEIGHT} />
+    <Viewer {salmon} {value} />
   </div>
   <div class=" w-96 z-10 absolute bottom-0 left-0 right-0 mx-auto py-20">
     <Slider {setValue} />
