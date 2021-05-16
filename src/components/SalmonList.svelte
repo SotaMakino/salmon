@@ -5,7 +5,7 @@
 </script>
 
 <div class="flex flex-wrap">
-  {#each SALMONS as name}
+  {#each SALMONS as name (name)}
     <a class="w-1/3" sveltekit:prefetch href={`/salmon/${name}`}>
       <Image
         className="m-auto"
