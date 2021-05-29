@@ -7,11 +7,3 @@ Salmon, salmon, and salmon.
 ```zsh
 pnpm i && pnpm dev
 ```
-
-## Lighthouse score
-
-<p align="center">
-	<img align="center" src="./score2021.svg" width="800px" loading="lazy" />
-</p>
-
-powered by [readme-pagespeed-insights](https://github.com/ankurparihar/readme-pagespeed-insights)
