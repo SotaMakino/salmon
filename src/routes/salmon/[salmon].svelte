@@ -24,14 +24,10 @@
   import Header from '../../components/Header.svelte';
   import Slider from '../../components/Slider.svelte';
   import Viewer from '../../components/Viewer.svelte';
-  import { SALMONS } from '../../constant';
+  import { IMG_INITIAL_INDEX, SALMONS } from '../../constant';
 
   export let salmon: string;
-  let value = 0;
-
-  const setValue = (v: typeof value) => {
-    value = v;
-  };
+  $: index = IMG_INITIAL_INDEX;
 
 </script>
 
@@ -41,10 +37,10 @@
 
 <div class="flex flex-col z-10">
   <div class="z-10"><Header image={`/interface/title_${salmon}.webp`} /></div>
-  <div class="w-full h-full text-center absolute top-0 left-0 px-56">
-    <Viewer {salmon} {value} />
+  <div class="relative transform scale-75 pb-10/12 sm:pb-3/4 md:pb-1/2 lg:pb-1/3">
+    <Viewer {salmon} bind:index />
   </div>
   <div class=" w-96 z-10 absolute bottom-0 left-0 right-0 mx-auto py-20">
-    <Slider {setValue} />
+    <Slider bind:index />
   </div>
 </div>

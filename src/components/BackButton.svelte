@@ -4,7 +4,7 @@
 
 </script>
 
-<button class="hover:bg-gray-300 rounded">
+<button class="transition hover:bg-gray-300 rounded">
   <a href="/">
     <Image src="/interface/back.webp" alt="back" width={ICON_SIZE} height={ICON_SIZE} />
   </a>

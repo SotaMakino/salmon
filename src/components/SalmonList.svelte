@@ -4,9 +4,13 @@
 
 </script>
 
-<div class="flex flex-wrap">
+<div class="flex flex-wrap max-w-screen-lg">
   {#each SALMONS as name (name)}
-    <a class="w-1/3" sveltekit:prefetch href={`/salmon/${name}`}>
+    <a
+      class="w-full md:w-1/3 transform transition-transform hover:scale-110"
+      sveltekit:prefetch
+      href={`/salmon/${name}`}
+    >
       <Image
         className="m-auto"
         src={`/mainview/main_${name}.webp`}

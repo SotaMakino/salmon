@@ -1,37 +1,35 @@
 <script lang="ts">
   import { afterUpdate, onMount } from 'svelte';
-  import { DIVIDER, IMG_HEIGHT, IMG_LIMIT, IMG_WIDTH } from '../constant';
+  import { IMG_HEIGHT, IMG_INITIAL_INDEX, IMG_LIMIT, IMG_WIDTH } from '../constant';
 
   type ImageItem = { id: number; el: HTMLImageElement };
 
   export let salmon: string;
-  export let value = 0;
+  export let index: number;
   let canvas: HTMLCanvasElement;
   let ctx: CanvasRenderingContext2D;
-  let store: ImageItem[] = [];
-  let lastIndex = 0;
-  $: roundedValue = Math.round(value * 10 * 1e2) / 1e2; // rounds like 0.xx
-  $: index = Math.floor(roundedValue / DIVIDER);
+  let imageList: ImageItem[] = [];
+  let lastIndex = IMG_INITIAL_INDEX;
 
-  const getImageEl = (i: number, store: ImageItem[]): HTMLImageElement => {
-    const found: ImageItem | null = store.find((item) => item.id == i);
+  const getImageEl = (i: number): HTMLImageElement => {
+    const found: ImageItem | null = imageList.find((item) => item.id == i);
     if (found != null) {
       return found.el;
     } else {
       const newImage = new Image();
-      store.push({ id: i, el: newImage });
+      imageList.push({ id: i, el: newImage });
       return newImage;
     }
   };
 
-  const loadImage = (i: number, store: ImageItem[], salmon: string): HTMLImageElement => {
-    const img = getImageEl(i, store);
+  const loadImage = (i: number): HTMLImageElement => {
+    const img = getImageEl(i);
     img.src = `/${salmon}/${i}.webp`;
     return img;
   };
 
-  const draw = (i: number, store: ImageItem[], salmon: string) => {
-    const img = loadImage(i, store, salmon);
+  const draw = (i: number) => {
+    const img = loadImage(i);
     const drawImageActualSize = () => {
       if (canvas != null) {
         canvas.width = IMG_WIDTH;
@@ -43,24 +41,29 @@
     img.onload = drawImageActualSize;
   };
 
-  const preload = () => {
+  const preloadImageAll = () => {
     for (let i = IMG_LIMIT; i > 0; i--) {
-      loadImage(i, store, salmon);
+      loadImage(i);
     }
   };
 
   onMount(() => {
-    draw(1, store, salmon);
-    preload();
+    draw(index);
+    preloadImageAll();
   });
 
   afterUpdate(() => {
-    if (index < IMG_LIMIT && index !== lastIndex) {
-      draw(index + 1, store, salmon);
-      lastIndex = index;
+    if (index != lastIndex) {
+      draw(index);
     }
+    lastIndex = index;
   });
 
 </script>
 
-<canvas class="inline w-full h-full" bind:this={canvas} width={IMG_WIDTH} height={IMG_HEIGHT} />
+<canvas
+  class="absolute w-full h-full object-cover"
+  bind:this={canvas}
+  width={IMG_WIDTH}
+  height={IMG_HEIGHT}
+/>

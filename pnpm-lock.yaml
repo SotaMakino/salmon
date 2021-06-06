@@ -18,7 +18,6 @@ specifiers:
   svelte: ^3.38.2
   svelte-check: ^1.5.2
   svelte-preprocess: ^4.7.3
-  svelte-slider: ^1.0.0
   tailwindcss: ^2.1.2
   tslib: ^2.2.0
   typescript: ^4.2.4
@@ -42,7 +41,6 @@ devDependencies:
   svelte: 3.38.2
   svelte-check: 1.5.2_638d3178e99864c74f54037dfa58b0b5
   svelte-preprocess: 4.7.3_bc60392b3f6116f56fa9e4496adda117
-  svelte-slider: 1.0.0
   tailwindcss: 2.1.2_b46308bb95614802e1b6d1dce4e25ea6
   tslib: 2.2.0
   typescript: 4.2.4
@@ -2328,10 +2326,6 @@ packages:
       strip-indent: 3.0.0
       svelte: 3.38.2
       typescript: 4.2.4
-    dev: true
-
-  /svelte-slider/1.0.0:
-    resolution: {integrity: sha512-299ehVoeS2IUo4THdz84VrrjsnfBLMkzVuI39XxZDUgn/15D5CRLVwWL+p+DM3KlFriAjPjXfhh0FrcTv8XXPQ==}
     dev: true
 
   /svelte/3.38.2:

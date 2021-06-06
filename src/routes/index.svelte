@@ -16,7 +16,7 @@
 
 {#if isVisible}
   <div
-    class="flex flex-col items-center justify-center px-16 pb-16 h-screen"
+    class="flex flex-col items-center justify-center px-16 pb-16 pt-6 md:h-screen"
     in:fade={{ delay: 200 }}
   >
     <Image src="/mainview/main_title.webp" width={300} height={100} />
