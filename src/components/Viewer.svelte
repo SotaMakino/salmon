@@ -7,7 +7,6 @@
   export let salmon: string;
   export let index: number;
   let canvas: HTMLCanvasElement;
-  let ctx: CanvasRenderingContext2D;
   let imageList: ImageItem[] = [];
   let lastIndex = IMG_INITIAL_INDEX;
 
@@ -28,20 +27,20 @@
     return img;
   };
 
-  const draw = (i: number) => {
+  const draw = (i: number): void => {
     const img = loadImage(i);
     const drawImageActualSize = () => {
       if (canvas != null) {
         canvas.width = IMG_WIDTH;
         canvas.height = IMG_HEIGHT;
-        ctx = canvas.getContext('2d');
+        let ctx: CanvasRenderingContext2D = canvas.getContext('2d');
         ctx.drawImage(img, 0, 0, IMG_WIDTH, IMG_HEIGHT);
       }
     };
     img.onload = drawImageActualSize;
   };
 
-  const preloadImageAll = () => {
+  const preloadImageAll = (): void => {
     for (let i = IMG_LIMIT; i > 0; i--) {
       loadImage(i);
     }

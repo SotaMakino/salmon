@@ -8,7 +8,7 @@
 
 <div class="flex items-center">
   <Image src="/interface/sea.webp" width={ICON_SIZE} height={ICON_SIZE} />
-  <div class="slider w-full">
+  <label class="slider w-full">
     <input
       class="w-full cursor-pointer"
       type="range"
@@ -16,6 +16,6 @@
       min={IMG_INITIAL_INDEX}
       max={IMG_LIMIT}
     />
-  </div>
+  </label>
   <Image src="/interface/river.webp" width={ICON_SIZE} height={ICON_SIZE} />
 </div>
